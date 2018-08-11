@@ -39,7 +39,7 @@
 			var ignore = true;
 			database.ref("web").on("value", function(e){
 				if(!ignore)
-					window.open(e.val());
+					window.location.href = (e.val());
 			});
 			
 			database.ref("web").once("value", function(e){
