@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+	<head>
+		<title> </title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				text-align: center;
+				line-height: 100vh;
+			}
+			#clickme{
+				cursor: pointer;
+				display: inline-block;
+				height: 50vmin;
+				width: 50vmin;
+				line-height: 50vmin;
+				background-color: #56fc53;
+				border-radius: 100%;
+				font-family: Montserrat;
+				vertical-align: middle;
+				font-size: 10vmin;
+				color: white;
+				transition: transform .2s;
+			}
+			#clickme:hover{
+				transform: scale(1.1);
+			}
+			.red{
+				background-color: rgba(0, 0, 0, 0) !important;
+				color: #fc5353 !important;
+				transform: scale(1) !important;
+				cursor: default !important;
+				width: 100vw !important;
+			}
+		</style>
+	</head>
+	<body>
+		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+		<div id="clickme" onclick="o()">Click Me</div>
+		<script>
+			var c = document.getElementById("clickme");
+			function o(){
+				var n = window.open("https://s.codepen.io/jchabin/debug/MBLGaL/vPrKKzzZPZRr", "_blank", "height=10,width=10,menubar=no,location=no,left=100000,top=100000,status=no,resizable=no,titlebar=no");
+				function loaded(){
+					c.style.transform = "scale(0)";
+					window.setTimeout(function(){
+						c.className = "red";
+						// c.style.backgroundColor = "rgba(0, 0, 0, 0)";
+						// c.style.color = "#fc5353";
+						c.innerHTML = "Close this Window"
+						// c.style.transform = "scale(1)";
+						c.onclick = "";
+					}, 200);
+				};
+				function checkLoad(){
+					if(window.document.readyState == "complete")
+						loaded();
+					else
+						requestAnimationFrame(checkLoad);
+				}
+				requestAnimationFrame(checkLoad);
+			}
+		</script>
+	</body>
+</html>
