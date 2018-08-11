@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+	<head>
+		<title> </title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+				overflow: hidden;
+			}
+			#web{
+				width: 69vw;
+				height: 10vmin;
+				font-size: 6vmin;
+				position: absolute;
+				top: calc(50vh - 5vmin);
+				left: 10vw;
+				outline: none;
+				box-sizing: border-box;
+				border: 1vmin solid black;
+				text-align: center;
+				font-family: Montserrat;
+			}
+			#send{
+				height: 10vmin;
+				width: 10vmin;
+				background-color: #56fc53;
+				position: absolute;
+				top: calc(50vh - 5vmin);
+				right: 10vw;
+				cursor: pointer;
+				transition: transform .2s;
+				color: white;
+				text-align: center;
+				line-height: 10vmin;
+				font-size: 8vmin;
+			}
+			#send:hover{
+				transform: scale(1.1);
+			}
+		</style>
+	</head>
+	<body>
+		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+		<input id="web"></input>
+		<div id="send" onclick="s()">⇒</div>
+		<script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
+		<script>
+			var config = {
+				apiKey: "AIzaSyBCeTVF1RvVNAefmETbBgLOv6lN0btN0q8",
+				authDomain: "online-stuff-3e092.firebaseapp.com",
+				databaseURL: "https://online-stuff-3e092.firebaseio.com",
+				projectId: "online-stuff-3e092",
+				storageBucket: "online-stuff-3e092.appspot.com",
+				messagingSenderId: "878238554342"
+			};
+			firebase.initializeApp(config);
+			
+			var database = firebase.database();
+			
+			function s(){
+				database.ref("web").set(document.getElementById("web").value);
+			}
+		</script>
+	</body>
+</html>
