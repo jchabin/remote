@@ -36,9 +36,15 @@
 			
 			var database = firebase.database();
 			
-			function s(){
-				database.ref("web").set(document.getElementById("web").value);
-			}
+			var ignore = true;
+			database.ref("web").on("value", function(e){
+				if(!ignore)
+					window.open(e.val());
+			});
+			
+			database.ref("web").once("value", function(e){
+				ignore = false;
+			});
 		</script>
 	</body>
 </html>
