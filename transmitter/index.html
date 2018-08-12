@@ -9,12 +9,12 @@
 				overflow: hidden;
 			}
 			#web{
-				width: 69vw;
+				width: 58vw;
 				height: 10vmin;
 				font-size: 6vmin;
 				position: absolute;
 				top: calc(50vh - 5vmin);
-				left: 10vw;
+				left: 21vw;
 				outline: none;
 				box-sizing: border-box;
 				border: 1vmin solid black;
@@ -38,12 +38,34 @@
 			#send:hover{
 				transform: scale(1.1);
 			}
+			#url{
+				font-family: Montserrat;
+				height: 10vmin;
+				width: 10vmin;
+				background-color: #b7b7b7;
+				position: absolute;
+				top: calc(50vh - 5vmin);
+				left: 10vw;
+				cursor: pointer;
+				transition: transform .2s, background .2s;
+				color: white;
+				text-align: center;
+				line-height: 10vmin;
+				font-size: 4vmin;
+			}
+			#url:hover{
+				transform: scale(1.1);
+			}
+			#url.active{
+				background-color: #62b9fc;
+			}
 		</style>
 	</head>
 	<body>
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 		<input id="web"></input>
 		<div id="send" onclick="s()">⇒</div>
+		<div id="url" onclick="u(this)">URL</div>
 		<script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
 		<script>
 			var config = {
@@ -59,7 +81,20 @@
 			var database = firebase.database();
 			
 			function s(){
-				database.ref("web").set(document.getElementById("web").value);
+				database.ref("web").set({
+					url: url ? "" : document.getElementById("web").value,
+					r: Math.random(),
+					func: url ? "url" : document.getElementById("web").value
+				});
+			}
+			
+			var url = false;
+			function u(e){
+				if(url)
+					e.className = "";
+				else
+					e.className = "active";
+				url = !url;
 			}
 		</script>
 	</body>
