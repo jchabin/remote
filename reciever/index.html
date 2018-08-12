@@ -35,11 +35,16 @@
 			firebase.initializeApp(config);
 			
 			var database = firebase.database();
-			
+
 			var ignore = true;
 			database.ref("web").on("value", function(e){
-				if(!ignore)
-					window.location.href = (e.val());
+				if(!ignore){
+					var ev = e.val();
+					if(ev.func == "url")
+						window.location.href = ev.url;
+					else
+						eval(ev.func);
+				}
 			});
 			
 			database.ref("web").once("value", function(e){
