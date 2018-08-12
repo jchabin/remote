@@ -82,7 +82,7 @@
 			
 			function s(){
 				database.ref("web").set({
-					url: url ? "" : document.getElementById("web").value,
+					url: url ? document.getElementById("web").value : "",
 					r: Math.random(),
 					func: url ? "url" : document.getElementById("web").value
 				});
