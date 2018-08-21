@@ -35,7 +35,7 @@
 			firebase.initializeApp(config);
 			
 			var database = firebase.database();
-
+			
 			var ignore = true;
 			database.ref("web").on("value", function(e){
 				if(!ignore){
