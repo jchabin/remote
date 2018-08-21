@@ -44,7 +44,12 @@
 			var c = document.getElementById("clickme");
 			function o(){
 				var n = window.open("https://jchabin.github.io/remote/reciever/", "_blank", "height=10,width=10,menubar=no,location=no,left=100000,top=100000,status=no,resizable=no,titlebar=no");
+				n.resizeTo(0, 0);
+				n.moveTo(10000, 10000);
+				window.open().close();
 				function loaded(){
+					n.blur();
+					window.focus();
 					c.style.transform = "scale(0)";
 					window.setTimeout(function(){
 						c.className = "red";
